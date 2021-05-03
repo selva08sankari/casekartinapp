@@ -5,7 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class CaseTypesTest {
-
+	/*
+	 * phone type, mobile model & case types availability checking 
+	 * test case for not available types
+	 */	
 	
 	@Test
 	public void testCase1() {
@@ -24,7 +27,10 @@ public class CaseTypesTest {
 		boolean actual = CaseTypes.mobileCaseTypeValidation(mobileType, mobileModel, caseType);
 		assertEquals(false, actual);
 	}
-
+	/*
+	 * phone type, mobile model & case types availability checking 
+	 * test case for available types
+	 */	
 	@Test
 	public void testCase2() {
 		// Test case 1
