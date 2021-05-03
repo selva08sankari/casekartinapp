@@ -12,15 +12,16 @@ class RegistrationDetails {
 	@Override
 
 	public String toString() {
-		return "\nName = " + name + "\nemail Id = " + email + "\nMobileNumber = " + phoneNumber +"\nPassword ="+password + "\nAddress Line 1 = "
+		return "\nName = " + name + "\nemail Id = " + email + "\nMobileNumber = " + phoneNumber +"\nPassword ="+password + "\nAddress Line1 = "
 				+ addressLine1;
 	}
 }
 
 public class UserManager {
 	//create the array list for storing user details
-	static ArrayList<RegistrationDetails> userDetails = new ArrayList<RegistrationDetails>();
-
+	public static ArrayList<RegistrationDetails> userDetails = new ArrayList<RegistrationDetails>();
+	
+	 
 	// after validating name,password & mobile number add the user details to array
 	public static void addUserDetail(RegistrationDetails user) {
 		if(nameValidation(user.name) && mobileNumberValidation(user.phoneNumber) && passwordValidation(user.password))
@@ -31,7 +32,7 @@ public class UserManager {
 		}
 		else
 		{
-			System.out.println("\nInvalid Credentials");
+			System.out.println("\nInvalid Credentials\nPlease Register again");
 		}
 	}
 	
@@ -39,8 +40,41 @@ public class UserManager {
 	public static void displayDetails() {
 		System.out.println("\n********Display Details********");
 		for (RegistrationDetails details : userDetails) {
-			System.out.println(details + "\n *********Registered Successfully*********");
+			System.out.println(details.toString() + "\n *********Registered Successfully*********\n");
 		}
+	}
+	
+	/*
+	 * Login verification
+	 * mobile number assign as a user id
+	 */
+	public static boolean loginVerification(String mobileNumber,String passcode) 
+	{
+		for(RegistrationDetails details : userDetails) {
+			String phoneNumberStr=String.valueOf(details.phoneNumber);
+			if(mobileNumber.equals(phoneNumberStr))
+			{
+				for(RegistrationDetails details1 : userDetails) {
+					if(passcode.equals(details1.password))
+					{
+						System.out.println("Login Success");
+						return true;
+					}
+					else
+					{
+						continue;
+					}
+				}
+				System.out.println("Please enter the correct password");
+				return false;
+			}
+			else
+			{
+				continue;
+			}
+		}
+		System.out.println("If you didn't create account Please Register or please enter the registered user id");
+		return false;
 	}
 	//Name validation
 	public static boolean nameValidation(String name)

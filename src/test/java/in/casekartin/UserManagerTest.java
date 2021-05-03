@@ -8,14 +8,14 @@ public class UserManagerTest {
 	/*
 	 * Registration verification process
 	 * Test case 1 
-	 * First user details with wrong input
+	 * user details with wrong input
 	 */
 	@Test
 	public void testCase1()
 	{
-		System.out.println("\n--User details with wrong input--");
+		System.out.println("\n--User details with Invalid input--");
 		RegistrationDetails user1=new RegistrationDetails();
-		user1.name="      a       ";
+		user1.name="     ";
 		user1.email="sss@gmail.com";
 		user1.phoneNumber=9999999936L;
 		user1.password="selva2k*9";
@@ -23,7 +23,7 @@ public class UserManagerTest {
 		
 		//validation of name
 		boolean valid=UserManager.nameValidation(user1.name);
-		assertEquals(true,valid);
+		assertEquals(false,valid);
 		
 		//validation of mobile number
 		valid=UserManager.mobileNumberValidation(user1.phoneNumber);
@@ -48,7 +48,7 @@ public class UserManagerTest {
 	@Test
 	public void testCase2()
 	{
-        System.out.println("\n--User details with correct input--");
+        System.out.println("\n--User details with valid input--");
 		RegistrationDetails user2=new RegistrationDetails();
 		user2.name="Christina Magdalin J";
 		user2.email="ccc@gmail.com";
@@ -72,8 +72,25 @@ public class UserManagerTest {
         UserManager.addUserDetail(user2);
         
        //display user details
-		UserManager.displayDetails();
-		
+        UserManager.displayDetails();
+
+	}
+	//Test case for login verification with valid input
+	@Test
+	public void testCase3()
+	{
+		System.out.println("\n--login details with valid input--");
+		boolean valid=UserManager.loginVerification("9999999935","christy2k");
+		assertEquals(true,valid);
+	}
+	
+	//Test case for login verification with Invalid input
+	@Test
+	public void testCase4()
+	{
+		System.out.println("\n--login details with Invalid input--");
+		boolean valid=UserManager.loginVerification("9999999934","christy2k*");
+		assertEquals(false,valid);
 	}
 
 }

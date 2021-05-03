@@ -6,8 +6,9 @@ import org.junit.Test;
 
 public class CaseTypesTest {
 
+	
 	@Test
-	public void testcase1() {
+	public void testcaseWithValidCaseTypes() {
 		String mobileType = "Feature Phone";
 		boolean isPhoneTypeValid = CaseTypes.phoneTypeValidation(mobileType);
 		assertEquals(true, isPhoneTypeValid);
@@ -25,7 +26,7 @@ public class CaseTypesTest {
 	}
 
 	@Test
-	public void testcase2() {
+	public void TestCaseWithInvalidCaseTypes() {
 		// Test case 1
 		// user phone Type case availability checking
 		String mobileType = "iPhone";
