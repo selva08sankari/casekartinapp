@@ -17,14 +17,14 @@ public class UserManagerTest {
 	@Test
 	public void testCase1()
 	{
-		RegistrationDetails user1=new RegistrationDetails(" selva ","sss@gmail.com",8077563470L,"","1/2 abs Street,chennai");
+		RegistrationDetails user1=new RegistrationDetails("       ","sss@gmail.com",8077563470L,"","1/2 abs Street,chennai");
 		System.out.println("\n-----------User details with Invalid input-----------");
 
 		userDetails.add(user1);
 		
 		//validation of name
 		boolean valid=UserManager.nameValidation(user1.name);
-		assertEquals(true,valid);
+		assertEquals(false,valid);
 		
 		//validation of mobile number
 		valid=UserManager.mobileNumberValidation(user1.phoneNumber);
