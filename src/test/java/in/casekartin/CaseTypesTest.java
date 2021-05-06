@@ -6,9 +6,19 @@ import org.junit.Test;
 
 public class CaseTypesTest {
 
-	
+	// test case for display phone models
 	@Test
-	public void testcaseWithValidCaseTypes() {
+	public void testCase1() {
+		CaseTypes.displayCaseModels();
+	}
+	/*
+	 * phone type, mobile model & case types availability checking test case for not
+	 * available types
+	 */
+
+	@Test
+	public void testCase2() {
+		System.out.println("\n************Invalid case Types as a input************");
 		String mobileType = "Feature Phone";
 		boolean isPhoneTypeValid = CaseTypes.phoneTypeValidation(mobileType);
 		assertEquals(true, isPhoneTypeValid);
@@ -25,8 +35,13 @@ public class CaseTypesTest {
 		assertEquals(false, actual);
 	}
 
+	/*
+	 * phone type, mobile model & case types availability checking test case for
+	 * available types
+	 */
 	@Test
-	public void TestCaseWithInvalidCaseTypes() {
+	public void testCase3() {
+		System.out.println("\n***********Valid case Types as a input*************");
 		// Test case 1
 		// user phone Type case availability checking
 		String mobileType = "iPhone";

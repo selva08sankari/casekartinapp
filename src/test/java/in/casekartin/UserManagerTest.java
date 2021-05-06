@@ -2,9 +2,13 @@ package in.casekartin;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 public class UserManagerTest {
+	public static ArrayList<RegistrationDetails> userDetails = new ArrayList<RegistrationDetails>();
+	
 	/*
 	 * Registration verification process
 	 * Test case 1 
@@ -13,17 +17,14 @@ public class UserManagerTest {
 	@Test
 	public void testCase1()
 	{
-		System.out.println("\n--User details with Invalid input--");
-		RegistrationDetails user1=new RegistrationDetails();
-		user1.name="     ";
-		user1.email="sss@gmail.com";
-		user1.phoneNumber=9999999936L;
-		user1.password="selva2k*9";
-		user1.addressLine1="1/2 abs Street,chennai";
+		RegistrationDetails user1=new RegistrationDetails(" selva ","sss@gmail.com",8077563470L,"","1/2 abs Street,chennai");
+		System.out.println("\n-----------User details with Invalid input-----------");
+
+		userDetails.add(user1);
 		
 		//validation of name
 		boolean valid=UserManager.nameValidation(user1.name);
-		assertEquals(false,valid);
+		assertEquals(true,valid);
 		
 		//validation of mobile number
 		valid=UserManager.mobileNumberValidation(user1.phoneNumber);
@@ -31,7 +32,7 @@ public class UserManagerTest {
 		
 		//validation of password
 		valid=UserManager.passwordValidation(user1.password);
-		assertEquals(true,valid);
+		assertEquals(false,valid);
 		
 		//if validation pass add the user details
         UserManager.addUserDetail(user1);
@@ -48,13 +49,8 @@ public class UserManagerTest {
 	@Test
 	public void testCase2()
 	{
-        System.out.println("\n--User details with valid input--");
-		RegistrationDetails user2=new RegistrationDetails();
-		user2.name="Christina Magdalin J";
-		user2.email="ccc@gmail.com";
-		user2.phoneNumber=9999999935L;
-		user2.password="christy2k";
-		user2.addressLine1="2 abs Street,chennai";
+        System.out.println("\n-------User details with valid input---------");
+        RegistrationDetails user2=new RegistrationDetails("Christina Magdalin J","ccc@gmail.com",9056332475L,"christy2k","2 abs Street,chennai");
 		
 		//validation of name
 		boolean valid=UserManager.nameValidation(user2.name);
@@ -75,22 +71,20 @@ public class UserManagerTest {
         UserManager.displayDetails();
 
 	}
-	//Test case for login verification with valid input
+	//Registered user as a input
 	@Test
 	public void testCase3()
 	{
-		System.out.println("\n--login details with valid input--");
-		boolean valid=UserManager.loginVerification("9999999935","christy2k");
-		assertEquals(true,valid);
+		System.out.println("\n---------Existing user as a input---------");
+		RegistrationDetails user3=new RegistrationDetails("muthu kumari P","mmm@gmail.com",9003306887L,"muthu2k*9","1/2 annai Street,chennai");
+		
+		//Checking existing user or not
+		boolean isValid=UserManager.existingUser(user3.phoneNumber);
+		assertEquals(true,isValid);
+		
+		//if validation pass add the user details
+        UserManager.addUserDetail(user3);
 	}
-	
-	//Test case for login verification with Invalid input
-	@Test
-	public void testCase4()
-	{
-		System.out.println("\n--login details with Invalid input--");
-		boolean valid=UserManager.loginVerification("9999999934","christy2k*");
-		assertEquals(false,valid);
-	}
+
 
 }
